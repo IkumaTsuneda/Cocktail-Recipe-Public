@@ -1,0 +1,116 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>カクテル検索画面</title>
+    <link th:href="@{/css/serch-form.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+     <div class="form-block">
+        <div class="form">
+            <form action="#" th:action="@{/serch}" th:method="post" th:object="${serchForm}">
+                <div>
+                    <h1>カクテルを検索</h1>
+                </div>
+                
+                <div class="form-group">
+                    <label for="word">カクテル名</label>
+                    <input type="text" name="word" class="form-control col-md-2" placeholder="キーワードを入力"><br>
+                </div>
+                <div class="form-group">
+                    <label for="word">ベース</label>
+                    <select name="base" 
+                            th:field="*{base}" 
+                            th:classappend="${#fields.hasErrors('base')} ? is-invalid" 
+                            class="form-control col-md-2" 
+                    />
+                        <p class="invalid-feedback" 
+                            th:if="${#fields.hasErrors('base')}" 
+                            th:errors="*{base}">(error)
+                        </p>
+                        <!-- <option hidden>指定なし</option> -->
+                        <option value="1" th:selected>ジン</option>
+                        <option value="2">ウォッカ</option>
+                        <option value="3">テキーラ</option>
+                        <option value="4">ラム</option>
+                        <option value="5">ウイスキー</option>
+                        <option value="6">ブランデー</option>
+                        <option value="7">リキュール</option>
+                        <option value="8">ワイン</option>
+                        <option value="9">ビール</option>
+                        <option value="10">日本酒</option>
+                        <option value="0">ノンアルコール</option>
+                    </select><br>
+                </div>
+                <div class="form-group">
+                    <label for="alcohol_from">度数の下限</label>
+                    <p class="invalid-feedback" 
+                        th:if="${#fields.hasErrors('alcohol_from')}" 
+                        th:errors="*{alcohol_from}">(error)
+                    </p>
+                    <select name="alcohol_from" 
+                            th:field="*{alcohol_from}" 
+                            th:classappend="${#fields.hasErrors('alcohol_from')} ? is-invalid" 
+                            class="form-control col-md-1"
+                    >
+                        <option th:each="i : ${#numbers.sequence(0, 100)}" 
+                                th:value="${i}" 
+                                th:text="${i}" 
+                        >
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="alcohol_to">度数の下限</label>
+                    <p class="invalid-feedback" 
+                        th:if="${#fields.hasErrors('alcohol_to')}" 
+                        th:errors="*{alcohol_to}">(error)
+                    </p>
+                    <select name="alcohol_from"  
+                            th:field="*{alcohol_to}" 
+                            th:classappend="${#fields.hasErrors('alcohol_to')} ? is-invalid" 
+                            class="form-control col-md-1"
+                    />
+                        <option th:each="i : ${#numbers.sequence(0, 100)}" 
+                                th:value="${i}" 
+                                th:text="${i}" 
+                                th:selected="${i==50}"
+                        >
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="loader();">検索</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function loader() {
+            var bg = document.getElementById("loader-bg"),
+            loader = document.getElementById("loader");
+            /* ロード画面の非表示を解除 */
+            bg.classList.remove("is-hide");
+            loader.classList.remove("is-hide");
+
+            /* 読み込み完了 */
+            window.addEventListener("load", stopload);
+
+            /* 10秒経ったら強制的にロード画面を非表示にする */
+            setTimeout("stopload()", 20000);
+
+            /* ロード画面を非表示にする処理 */
+            function stopload() {
+                bg.classList.add("fadeout-bg");
+                loader.classList.add("fadeout-loader");
+            }
+        }
+    </script>
+    <div id="loader-bg" class="is-hide">
+        <div id="loader" class="is-hide">
+            <p>
+                <img src="../images/Collage_2023-11-16_22_39_42-modified.png"><br>
+                NOW LOADING...
+            </p>
+        </div>
+    </div>
+</body>
+</html>

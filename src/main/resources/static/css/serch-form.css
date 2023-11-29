@@ -1,0 +1,225 @@
+@charset "UTF-8";
+
+/* PC用 */
+@media screen and (min-width: 481px) { 
+
+    body {
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/adtDSC_7566-750x499.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-weight:  bold;
+        text-align: center;
+        color: blue;
+        padding-bottom: 4%;
+        text-shadow: 2px 2px 3px #808080;
+    }
+
+    label {
+        font-size: large;
+        padding-right: 1%;
+    }
+
+    .form-group {
+        display: flex;
+        width: 400%;
+    }
+
+    .form {
+        background-color: azure;
+        width: 30%;
+        margin-top: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1%;
+        background:rgba(220,226,242,0.6);
+        border-radius: 3%;
+    } 
+
+    .form-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } 
+
+    /* 非表示 */
+    .is-hide {
+        display: none;
+    }
+    /* ローディング画面をフェードアウト */
+    .fadeout-bg {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .8s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローダーをフェードアウト */
+    .fadeout-loader {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローディング画面 */
+    #loader-bg {
+        background:rgba(220,226,242,0.6);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    #loader {
+        margin-top: 10%;
+    }
+
+    #loader img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: auto;
+        height: 50%;
+        animation: r-turn 1s linear infinite alternate;
+    }
+
+    @keyframes  r-turn{
+        0%   { transform: rotate(-20deg); }
+        100% { transform: rotate(20deg); }
+    }
+
+    #loader p {
+        color: #454545;
+        font-size: 40px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    #loader p img {
+        display: inline-block;
+    }
+}
+
+
+/* モバイル用 */
+@media screen and (max-width: 480px) { 
+    body {
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/adtDSC_7566-750x499.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-weight:  bold;
+        text-align: center;
+        color: blue;
+        padding-bottom: 4%;
+        text-shadow: 2px 2px 3px #808080;
+    }
+
+    label {
+        font-size: large;
+        padding-right: 8%;
+    }
+
+    .form-group {
+        display: flex;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .form {
+        background-color: azure;
+        width: 100%;
+        margin: 46% 1% 0 1%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1%;
+        background:rgba(220,226,242,0.6);
+        border-radius: 3%;
+    } 
+
+    .form-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } 
+
+    /* 非表示 */
+    .is-hide {
+        display: none;
+    }
+    /* ローディング画面をフェードアウト */
+    .fadeout-bg {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .8s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローダーをフェードアウト */
+    .fadeout-loader {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローディング画面 */
+    #loader-bg {
+        background:rgba(220,226,242,0.6);
+        height: 100%;
+        width: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
+
+    #loader {
+        margin-top: 50%;
+    }
+
+    #loader img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: auto;
+        height: 40%;
+        animation: r-turn 1s linear infinite alternate;
+    }
+
+    @keyframes  r-turn{
+        0%   { transform: rotate(-20deg); }
+        100% { transform: rotate(20deg); }
+    }
+
+    #loader p {
+        color: #454545;
+        font-size: 40px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    #loader p img {
+        display: inline-block;
+    }
+
+}

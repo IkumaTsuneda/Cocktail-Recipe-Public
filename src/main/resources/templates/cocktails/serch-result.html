@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>検索結果</title>
+    <link th:href="@{/css/serch-result.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="top-menu">
+        <h1>検索結果</h1>
+        <div class="top-menu-button">
+            <a href="/" class="btn btn-primary" th:action="@{/}">カクテル検索画面へ戻る</a><br>
+            <a href="#jump" class="btn btn-primary">最下部へ移動</a>
+         </div>
+    </div>
+
+    <div class="serchresult-table" th:each="cocktailsList : ${cocktailsList}">
+        <table border="1"> 
+        <!-- <table class="table table-bordered border-primary"> -->
+            <thead>
+                <tr>
+                    <th id="th1">カクテル名</th>
+                        <td th:text="${cocktailsList.cocktail_name}">
+                            (cocktail_name)
+                        </td> 
+                </tr>
+                <tr>
+                    <th>画像</th>
+                        <td>
+                            <div class="cocktail-img-area">
+                                <img th:src="@{(${cocktailsList.images})}">
+                            </div>
+                        </td>
+                </tr>
+                <tr>
+                    <th>カクテル英語名</th>
+                        <td th:text="${cocktailsList.cocktail_name_english}">
+                            (cocktail_name_english)
+                        </td> 
+                </tr>
+                <tr>
+                    <th>ベース</th>
+                        <td th:text="${cocktailsList.base_name}">
+                            (base_name)
+                        </td> 
+                </tr>  
+                <tr>
+                    <th>技法</th>
+                        <td th:text="${cocktailsList.technique_name}">
+                            (technique_name)
+                        </td> 
+                </tr> 
+                <tr>
+                    <th>味わい</th>
+                        <td th:text="${cocktailsList.taste_name}">
+                            (taste_name)
+                        </td> 
+                </tr> 
+                <tr>
+                    <th>スタイル</th>
+                        <td th:text="${cocktailsList.style_name}">
+                            (style_name)
+                        </td>
+                </tr>
+                <tr>
+                    <th>アルコール度数</th>
+                        <td th:text="${cocktailsList.alcohol + '%'}">
+                            (alcohol)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>TOP</th>
+                        <td th:text="${cocktailsList.top_name}">
+                            (top_name)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>グラス</th>
+                        <td th:text="${cocktailsList.glass_name}">
+                            (glass_name)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>タイプ</th>
+                        <td th:text="${cocktailsList.type_name}" id="td">
+                            (type_name)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>カクテル要約</th>
+                        <td th:text="${cocktailsList.cocktail_digest}" id="td">
+                            (glass_name)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>カクテル説明</th>
+                        <td th:text="${cocktailsList.cocktail_desc}" id="td">
+                            (cocktail_desc)
+                        </td>
+                </tr> 
+                <tr>
+                    <th>レシピ</th>
+                        <td id="td">
+                            <span th:each="recipesList : ${cocktailsList.getRecipes()}" >
+                                <th:block th:if="${recipesList.unit == null}" >
+                                    <p th:text="${recipesList.ingredient_name + ' ' + recipesList.amount}"></p>
+                                </th:block>
+                                <th:block th:if="${recipesList.unit != null}" >
+                                    <p th:text="${recipesList.ingredient_name + ' ' + recipesList.amount + recipesList.unit}"></p>
+                                </th:block>
+                            </span>
+                        </td>
+                </tr> 
+            </thead>
+        </table>
+    </div>
+
+    <form action="#" th:action="@{/paging}" th:method="post" class="pager">
+        <span th:if="${serchResult.current_page != 1}">
+            <button name="back" type="submit" class="btn btn-primary" onclick="loader();">前へ</button>
+        </span>
+        <span th:if="${serchResult.current_page != serchResult.total_pages}">
+            <button name="next" type="submit" class="btn btn-primary" onclick="loader();">次へ</button>
+        </span>
+        <input type="hidden" th:value="${serchResult.current_page}" th:field="${serchResult.current_page}"/>
+        <input type="hidden" th:value="${serchForm.base}" th:field="${serchForm.base}"/>
+        <input type="hidden" th:value="${serchForm.word}" th:field="${serchForm.word}"/>
+        <input type="hidden" th:value="${serchForm.alcohol_from}" th:field="${serchForm.alcohol_from}"/>
+        <input type="hidden" th:value="${serchForm.alcohol_to}" th:field="${serchForm.alcohol_to}"/>
+    </form>
+
+    <div class="bottom">
+        <a name="jump"></a>
+        <a href="#" class="btn btn-primary">トップへ戻る</a>
+    </div>
+
+    <script>
+        function loader() {
+            var bg = document.getElementById("loader-bg"),
+            loader = document.getElementById("loader");
+            /* ロード画面の非表示を解除 */
+            bg.classList.remove("is-hide");
+            loader.classList.remove("is-hide");
+
+            /* 読み込み完了 */
+            window.addEventListener("load", stopload);
+
+            /* 10秒経ったら強制的にロード画面を非表示にする */
+            setTimeout("stopload()", 20000);
+
+            /* ロード画面を非表示にする処理 */
+            function stopload() {
+                bg.classList.add("fadeout-bg");
+                loader.classList.add("fadeout-loader");
+            }
+        }
+    </script>
+    <div id="loader-bg" class="is-hide">
+        <div id="loader" class="is-hide">
+            <p>
+                <img src="../images/Collage_2023-11-16_22_39_42-modified.png"><br>
+                NOW LOADING...
+            </p>
+        </div>
+    </div>
+</body>
+</html>

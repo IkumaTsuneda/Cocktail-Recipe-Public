@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+
+/* PC用 */
+@media screen and (min-width: 481px) {
+
+    h1 {
+        font-weight:  bold;
+        text-shadow: 2px 2px 3px #808080;
+    }
+
+    .top-menu {
+        width: 100%;
+        margin: 0% 0% 0.5% 29.5%;
+    }
+    
+    a {
+        margin: 3px;
+    }
+    
+    table {
+        background:rgba(220, 226, 242, 0.85);
+    }
+    
+    th {
+        width: 130px;
+    }
+    
+    td {
+        width: 580px;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        background-image: url("../images/adtDSC_7566-750x499.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        overflow-x: hidden;
+    }
+    
+    .serchresult-table {
+        width: 100%;
+        margin: 2% 0% 2% 30%;
+        table-layout: fixed;
+        background-color: transparent;
+    }
+    
+    .cocktail-img-area {
+        width: 400px;
+        height: 400px;
+        margin-left: 20%;
+        margin: 1% 0 1% 15%;
+        border: solid 1px gray;
+    }
+    
+    .cocktail-img-area img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .bottom {
+        margin: 0% 0% 0.5% 29.5%;
+    }
+    
+    .pager {
+        margin: 0% 0% 0.5% 30%;
+    }
+    
+    /* 非表示 */
+    .is-hide {
+        display: none;
+    }
+    /* ローディング画面をフェードアウト */
+    .fadeout-bg {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .8s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローダーをフェードアウト */
+    .fadeout-loader {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローディング画面 */
+    #loader-bg {
+        background:rgba(220,226,242,0.6);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+    
+    #loader {
+        margin-top: 10%;
+    }
+    
+    #loader img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-align: center;
+        width: 469px;
+        height: 469px;
+        /* width: 24%;
+        height: 24%; */
+        animation: r-turn 1s linear infinite alternate;
+    }
+    
+    @keyframes  r-turn{
+        0%   { transform: rotate(-20deg); }
+        100% { transform: rotate(20deg); }
+    }
+    
+    #loader p {
+        color: #454545;
+        font-size: 40px;
+        line-height: 1.4;
+        text-align: center;
+    }
+    
+    #loader p img {
+        display: inline-block;
+    }
+}
+
+
+/* モバイル用 */
+@media screen and (max-width: 480px) { 
+    
+    h1 {
+        font-weight:  bold;
+        text-shadow: 2px 2px 3px #808080;
+    }
+
+    .top-menu {
+        width: 100%;
+        margin: 2%;
+        text-align: center;
+    }
+    
+    a {
+        margin: 3px;
+    }
+    
+    table {
+        background:rgba(220, 226, 242, 0.85);
+    }
+    
+    th {
+        white-space: nowrap;
+    }
+    
+    body {
+        max-width: 100%;
+        height: 100%;
+        background-image: url("../images/adtDSC_7566-750x499.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        overflow-x: hidden;
+    }
+    
+    .serchresult-table {
+        max-width: 100%;
+        margin: 7% 2% 9% 2%;
+        table-layout: fixed;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cocktail-img-area {
+        width: 200px; 
+        height: 200px;
+        margin: auto;
+        border: solid 1px gray;
+    }
+    
+    .cocktail-img-area img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .bottom {
+        /* margin: 0% 0% 0.5% 29.5%; */
+        margin: 2%;
+        text-align: center;
+    }
+    
+    .pager {
+        /* margin: 0% 0% 0.5% 30%; */
+        margin: 2%;
+        text-align: center;
+    }
+    
+    /* 非表示 */
+    .is-hide {
+        display: none;
+    }
+    /* ローディング画面をフェードアウト */
+    .fadeout-bg {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .8s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローダーをフェードアウト */
+    .fadeout-loader {
+        transition-property: opacity;
+        transition-delay: .9s;
+        transition-duration: .3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* ローディング画面 */
+    #loader-bg {
+        background:rgba(220,226,242,0.6);
+        height: 100%;
+        width: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
+    
+    #loader {
+        margin-top: 50%;
+    }
+    
+    #loader img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-align: center;
+        width: 80%;
+        height: 80%;
+        animation: r-turn 1s linear infinite alternate;
+    }
+    
+    @keyframes  r-turn{
+        0%   { transform: rotate(-20deg); }
+        100% { transform: rotate(20deg); }
+    }
+    
+    #loader p {
+        color: #454545;
+        font-size: 40px;
+        line-height: 1.4;
+        text-align: center;
+    }
+    
+    #loader p img {
+        display: inline-block;
+    }
+}
+
